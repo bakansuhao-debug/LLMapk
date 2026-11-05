@@ -13,6 +13,8 @@ jobs:
         with:
           gradle-version: 8.10.2
       - run: unzip -q LocalLLM-android.zip
+      - run: sed -i 's/GIT_TAG b5000/GIT_TAG b5001/' LocalLLM/app/src/main/cpp/CMakeLists.txt
+      - run: echo "android.suppressUnsupportedCompileSdk=35" >> LocalLLM/gradle.properties
       - run: gradle assembleRelease --no-daemon
         working-directory: LocalLLM
       - uses: actions/upload-artifact@v4
